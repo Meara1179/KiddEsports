@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:KiddEsports"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <!-- This section of code creates the grid which will store the main part of the program. -->
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*" />
@@ -16,23 +17,30 @@
             <RowDefinition Height="5*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        
+
+        <Grid.Resources>
+            <!-- Establishes the style used by the WPF components. -->
+            <Style TargetType="Label">
+                <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            </Style>
+        </Grid.Resources>
+
         <DataGrid x:Name="dgvTeamList" Grid.Row="1" Margin="10" 
                   IsReadOnly="True" SelectionChanged="dgvTeamList_SelectionChanged"/>
 
-        <StackPanel Grid.Column="1" Grid.RowSpan="2" Margin="10">
-            <!--This label is applying the style oputlined above using the 'InputLabel' Key-->
-            <Label Style="{StaticResource InputLabel}">Team Name:</Label>
+        <StackPanel Grid.Column="1" Grid.Row="1" Margin="10">
+            <!-- Creates the components used for the program inside the data grid. -->
+            <Label>Team Name:</Label>
             <TextBox x:Name="txtTeamName"/>
-            <Label Style="{StaticResource InputLabel}">Primary Contact:</Label>
+            <Label>Primary Contact:</Label>
             <TextBox x:Name="txtPrimaryContact"/>
-            <Label Style="{StaticResource InputLabel}">Contact Phone Number:</Label>
+            <Label>Contact Phone Number:</Label>
             <TextBox x:Name="txtPhoneNo"/>
-            <Label Style="{StaticResource InputLabel}">Contact Email:</Label>
+            <Label>Contact Email:</Label>
             <TextBox x:Name="txtEmail"/>
-            <Label Style="{StaticResource InputLabel}">Compition Points:</Label>
+            <Label>Compition Points:</Label>
             <TextBox x:Name="txtCompPoints"/>
-            <Button x:Name="btnSave" Click="btnSave_Click" >Add to Addressbook</Button>
+            <Button x:Name="btnSave" Click="btnSave_Click" Margin="10" >Add to Addressbook</Button>
         </StackPanel>
     </Grid>
 </Window>

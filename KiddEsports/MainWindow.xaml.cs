@@ -20,9 +20,20 @@ namespace KiddEsports
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<TeamDetails> teamList = new List<TeamDetails>(); 
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void dgvTeamList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
