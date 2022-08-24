@@ -20,20 +20,95 @@ namespace KiddEsports
     /// </summary>
     public partial class MainWindow : Window
     {
-        List<TeamDetails> teamList = new List<TeamDetails>(); 
+        // Creates list for TeamDetails object.
+        List<TeamDetails> teamList = new List<TeamDetails>();
+        // Creates the FileManagement class to handle reading and writing to files.
+        FileManagement file = new FileManagement();
+        // Creates a team object for storing data for each team.
+        TeamDetails team = new TeamDetails();
+
+        bool isNewEntry = true;
+        
+        //Constructor which handles the initial setup of the form.
         public MainWindow()
         {
             InitializeComponent();
+            SetupDataGrid();
+        }
+
+        private void SetupDataGrid()
+        {
+            teamList = file.GetTeam();
+            dgvTeamList.ItemsSource = teamList;
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            if (isNewEntry)
+            {
+                SaveNewEntry();
+            }
+            else
+            {
+                team.TeamName = txtTeamName.Text;
+                team.PrimaryContact = txtPrimaryContact.Text;
+                team.ContactPhone = txtPhoneNo.Text;
+                team.ContactEmail = txtEmail.Text;
+                team.CompPoints = txtCompPoints.Text;
 
+                file.UpdateTeam(team);
+                teamList = file.GetTeam();
+                dgvTeamList.Items.Refresh();
+            }
+            ClearDataEntryField();
+        }
+
+        private void SaveNewEntry()
+        {
+            team.TeamName = txtTeamName.Text;
+            team.PrimaryContact = txtPrimaryContact.Text;
+            team.ContactPhone = txtPhoneNo.Text;
+            team.ContactEmail = txtEmail.Text;
+            team.CompPoints = txtCompPoints.Text;
+
+            file.AddNewTeam(team);
+            teamList = file.GetTeam();
+            dgvTeamList.Items.Refresh();
+        }
+
+        private void ClearDataEntryField()
+        {
+            team.TeamName = "";
+            team.PrimaryContact = "";
+            team.ContactPhone = "";
+            team.ContactEmail = "";
+            team.CompPoints = "";
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
         }
 
         private void dgvTeamList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            int id = dgvTeamList.SelectedIndex;
 
+            if (id == -1)
+            {
+                return;
+            }
+
+            team = file.GetTeamByID(id);
+            team.Id = id;
+
+            txtTeamName.Text = team.TeamName;
+            txtPrimaryContact.Text = team.PrimaryContact;
+            txtPhoneNo.Text = team.ContactPhone;
+            txtEmail.Text = team.ContactEmail;
+            txtCompPoints.Text = team.CompPoints;
+
+            isNewEntry = false;
         }
     }
 }
