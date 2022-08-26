@@ -53,6 +53,12 @@ namespace KiddEsports
             SaveDataToFile();
         }
 
+        public void DeleteTeam(TeamDetails team)
+        {
+                teamList.RemoveAt(team.Id);
+                SaveDataToFile();
+        }
+
         private void SaveDataToFile()
         {
             try

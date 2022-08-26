@@ -35,13 +35,13 @@ namespace KiddEsports
             InitializeComponent();
             SetupDataGrid();
         }
-
+        // Method which gets the team objects from a file and uses it to populate the data grid.
         private void SetupDataGrid()
         {
             teamList = file.GetTeam();
             dgvTeamList.ItemsSource = teamList;
         }
-
+        // Mathod that creates a new team object using the supplied data and repopulates the data grid with the updated list.
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             if (isNewEntry)
@@ -85,6 +85,15 @@ namespace KiddEsports
             team.CompPoints = "";
         }
 
+        private void ClearTextBox()
+        {
+            txtTeamName.Text = "";
+            txtPrimaryContact.Text = "";
+            txtPhoneNo.Text = "";
+            txtEmail.Text = "";
+            txtCompPoints.Text = "";
+        }
+
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.Application.Current.Shutdown();
@@ -109,6 +118,26 @@ namespace KiddEsports
             txtCompPoints.Text = team.CompPoints;
 
             isNewEntry = false;
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show($"Are you sure you wish to delete the {team.TeamName} team? \n(This action cannot be undone.)", "Delete team?",
+                MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+            {
+
+            }
+            else
+            {
+                file.DeleteTeam(team);
+                teamList = file.GetTeam();
+                dgvTeamList.Items.Refresh();
+            }
+        }
+
+        private void btnNew_Click(object sender, RoutedEventArgs e)
+        {
+            ClearTextBox();
         }
     }
 }
