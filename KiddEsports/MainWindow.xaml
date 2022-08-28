@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KiddEsports"
         mc:Ignorable="d"
-        Title="Kidd Esports" Height="500" Width="800">
+        Title="Kidd Esports Team Viewer" Height="500" Width="800">
     <!-- This section of code creates the grid which will store the main part of the program. -->
     <Grid Background="#36393f">
         <Grid.ColumnDefinitions>
@@ -25,6 +25,18 @@
                 <Setter Property="FontFamily" Value="Comic Sans MS"/>
                 <Setter Property="Foreground" Value="White"/>
             </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="Black"/>
+            </Style>
+            <Style TargetType="Button">
+                <Style.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Style.Resources>
+            </Style>
+            
         </Grid.Resources>
 
         <DataGrid x:Name="dgvTeamList" Grid.Row="1" Margin="10,10,10,10" 
@@ -32,7 +44,7 @@
 
         <StackPanel Grid.Column="2" Grid.Row="1" Margin="10,10,10,10">
             <!-- Creates the components used for the program inside the data grid. -->
-            <Button x:Name="btnNew" Click="btnNew_Click" Margin="5" Width="92" >New Entry</Button>
+            <Button x:Name="btnNew" Click="btnNew_Click" Margin="5" Width="92" MouseEnter="btnNew_MouseEnter" >New Entry</Button>
             <Label>Team Name:</Label>
             <TextBox x:Name="txtTeamName"/>
             <Label>Primary Contact:</Label>
@@ -43,9 +55,11 @@
             <TextBox x:Name="txtEmail"/>
             <Label>Compition Points:</Label>
             <TextBox x:Name="txtCompPoints"/>
-            <Button x:Name="btnSave" Click="btnSave_Click" Margin="10" >Save to Addressbook</Button>
+            <Button x:Name="btnSave" Click="btnSave_Click" Margin="10" MouseEnter="btnNew_MouseEnter">Save to Addressbook</Button>
         </StackPanel>
-        <Button x:Name="btnDelete" Grid.Column="2" Content="Delete" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Width="90" Click="btnDelete_Click" Background="Red" Foreground="Black" BorderBrush="Black" FontWeight="Bold" FontSize="16"/>
-        <TextBlock x:Name="txbKiddEsports" HorizontalAlignment="Left" Margin="84,4,0,0" TextWrapping="Wrap" Text="Kidd Esports" VerticalAlignment="Top" Height="57" Width="216" FontSize="36" TextDecorations="Underline" FontStyle="Italic" FontFamily="Viner Hand ITC" Grid.Column="1" Foreground="#FF9C9AE2"/>
+        <Button x:Name="btnDelete" Grid.Column="2" Content="Delete" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Width="90" 
+                Click="btnDelete_Click" Background="Red" Foreground="Black" BorderBrush="Black" FontWeight="Bold" FontSize="16" MouseEnter="btnNew_MouseEnter"/>
+        <TextBlock x:Name="txbKiddEsports" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Team Viewer" VerticalAlignment="Center" Height="57" Width="236" 
+                   FontSize="36" TextDecorations="Underline" FontStyle="Italic" FontFamily="Arial Rounded MT Bold" Grid.Column="1" Foreground="#FFD4D4D4"/>
     </Grid>
 </Window>

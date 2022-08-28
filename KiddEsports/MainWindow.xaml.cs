@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Media;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -28,7 +31,11 @@ namespace KiddEsports
         TeamDetails team = new TeamDetails();
 
         bool isNewEntry = true;
-        
+
+        SoundPlayer player = new SoundPlayer();
+        string soundButtonHover = "Button_Hover.wav";
+        string soundButtonSave = "Button_Save.wav";
+
         //Constructor which handles the initial setup of the form.
         public MainWindow()
         {
@@ -47,6 +54,9 @@ namespace KiddEsports
             if (isNewEntry)
             {
                 SaveNewEntry();
+
+                player.SoundLocation = soundButtonSave;
+                player.Play();
             }
             else
             {
@@ -59,6 +69,9 @@ namespace KiddEsports
                 file.UpdateTeam(team);
                 teamList = file.GetTeam();
                 dgvTeamList.Items.Refresh();
+
+                player.SoundLocation = soundButtonSave;
+                player.Play();
             }
             ClearDataEntryField();
         }
@@ -138,6 +151,13 @@ namespace KiddEsports
         private void btnNew_Click(object sender, RoutedEventArgs e)
         {
             ClearTextBox();
+            isNewEntry = true;
+        }
+
+        private void btnNew_MouseEnter(object sender, MouseEventArgs e)
+        {
+            player.SoundLocation = soundButtonHover;
+            player.Play();
         }
     }
 }
