@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace KiddEsports
 {
+    // Class which is used to hold all the relevant details for each team.
     public class TeamDetails
     {
         public int Id;
@@ -22,8 +23,10 @@ namespace KiddEsports
 
         }
 
-        // Constructor which allows the creation of an object with all properties filled with Comp points being optional.
-        public TeamDetails(string teamName, string primaryContact, string contactPhone, string contactEmail, string compPoints = "")
+        // Constructor which allows the creation of an object with all
+        // properties filled with Comp points being optional.
+        public TeamDetails(string teamName, string primaryContact, string contactPhone, 
+            string contactEmail, string compPoints = "")
         {
             TeamName = teamName;
             PrimaryContact = primaryContact;
