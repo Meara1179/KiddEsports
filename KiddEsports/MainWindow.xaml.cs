@@ -143,12 +143,13 @@ namespace KiddEsports
         }
         #endregion
         #region Methods
+        // Method which gets the team objects from a file and uses it to populate the data grid.
         private void SetupDataGrid()
         {
             teamList = file.GetTeam();
             dgvTeamList.ItemsSource = teamList;
         }
-
+        // Creates a new TeamDetails object when called.
         private void SaveNewEntry()
         {
             team.TeamName = txtTeamName.Text;
@@ -163,10 +164,6 @@ namespace KiddEsports
         }
         #endregion
         #region Helpers
-        // Method which gets the team objects from a file and uses it to populate the data grid.
-
-        // Creates a new TeamDetails object when called.
-
         // Clears the data entry fields when called.
         private void ClearDataEntryField()
         {

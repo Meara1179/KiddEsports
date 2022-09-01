@@ -56,7 +56,7 @@
             <TextBox x:Name="txtEmail"/>
             <Label>Compition Points:</Label>
             <TextBox x:Name="txtCompPoints"/>
-            <Button x:Name="btnSave" Click="btnSave_Click" Margin="10" MouseEnter="btnNew_MouseEnter">Save to Addressbook</Button>
+            <Button x:Name="btnSave" Click="btnSave_Click" Margin="10" MouseEnter="btnNew_MouseEnter" Content="Save Team"/>
         </StackPanel>
         <Button x:Name="btnDelete" Grid.Column="2" Content="Delete" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Width="90" 
                 Click="btnDelete_Click" Background="Red" Foreground="Black" BorderBrush="Black" FontWeight="Bold" FontSize="16" MouseEnter="btnNew_MouseEnter"/>
